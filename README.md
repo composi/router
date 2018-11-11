@@ -129,7 +129,7 @@ router([
   },
   {
     path: '/',
-    action: () => console.log('This is another handler on the Home path.)
+    action: () => console.log('This is another handler on the Home path.')
   }
 ])
 ```
