@@ -1,6 +1,6 @@
 {
   "name": "@composi/router",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "A router for @composi/core, allowing conditional rendering of functional components on the client side for SPAs and PWAs.",
   "main": "src/index.js",
   "scripts": {
