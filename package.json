@@ -1,10 +1,11 @@
 {
   "name": "@composi/router",
-  "version": "0.6.1",
+  "version": "0.7.0",
   "description": "A router for @composi/core, allowing conditional rendering of functional components on the client side for SPAs and PWAs.",
   "main": "src/index.js",
   "scripts": {
     "build": "run-s format lint checkjs test",
+    "bundle": "rollup -c",
     "checkjs": "tsc --allowJs --checkJs --noEmit --moduleResolution node --target ES6 src/*.js",
     "format": "prettier --no-semi --single-quote --write ./src/*.js",
     "lint": "eslint --config ./.eslintrc.json src",
