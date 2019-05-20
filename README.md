@@ -140,15 +140,18 @@ To learn more about removing paths and handlers, see [Removing a Route](#Removin
 You can indicate that a parameter is optional by using the `?` character after it:
 
 ```javascript
-router('users/:name?', function(name) {
-  if (name) {
-    console.log(name)
-  } else {
-    console.log('No name was provided.')
+router({
+  path: 'users/:name?',
+  action: function(name) {
+    if (name) {
+      console.log(name)
+    } else {
+      console.log('No name was provided.')
+    }
   }
 })
-router('users/') // logs `No name was provided.`
-router('users/bob') // logs `'bob'`
+router.navigate('users/') // logs `No name was provided.`
+router.navigate('users/bob') // logs `'bob'`
 ```
 
 ## Wildcard
@@ -156,10 +159,13 @@ router('users/bob') // logs `'bob'`
 Using `*` will catch any routes that do not match previously defined routes. Use this as a catch all for any unexpected routes or for a 404:
 
 ```javascript
-router('users/*', function() {
-  console.log('Caught unexpected route!')
+router({
+  path: 'users/*',
+  action: function() {
+    console.log('Caught unexpected route!')
+  }
 })
-router('users/12312312')
+router.navigate('users/12312312')
 ```
 
 ## Block a Route
@@ -167,8 +173,11 @@ router('users/12312312')
 You can block a route by returning false:
 
 ```javascript
-router('/admin', function() {
-  return false
+router({
+  path: '/admin',
+  action: function() {
+    return false
+  }
 })
 ```
 
