@@ -9,14 +9,14 @@ export default {
     {
       file: 'dist/router.js',
       format: 'umd',
-      name: 'composi',
+      name: 'Router',
       sourcemap: true,
       sourcemapFile: 'dist/router.js.map'
     },
     {
       file: 'dist/router.mjs',
       format: 'esm',
-      name: 'composi',
+      name: 'Router',
       sourcemap: true,
       sourcemapFile: 'dist/router.mjs.map'
     }

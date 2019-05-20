@@ -1,5 +1,5 @@
 // @ts-nocheck
-import { Router } from '../src'
+import { Router } from '../dist/router'
 
 test('Router should respond to location hash changes.', () => {
   const router = new Router()
