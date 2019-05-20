@@ -1,6 +1,6 @@
 # @composi/router
 
-@composi/router is a client-side hash-based router for single page apps (SPA). This is for those occasions where you want to be able to conditionally render a set of sub components based on a url value. This is works properly with the browser's back button and you can use it with the History API. @composi/router is very simple with only a few options. If you need a more advanced router, check out [Universal Router](https://www.npmjs.com/package/universal-router). Or use whatever router you prefer. 
+@composi/router is a client-side hash-based router for single page apps (SPA). This is for those occasions where you want to be able to conditionally render a set of sub components based on a url value. This is works properly with the browser's back button and you can use it with the History API. @composi/router is very simple with only a few options. If you need a more advanced router, check out [Universal Router](https://www.npmjs.com/package/universal-router). Or use whatever router you prefer.
 
 ## Installation
 
@@ -17,7 +17,7 @@ import { h, render } from '@composi/core'
 import { Router } from '@composi/router'
 ```
 
-To create routes you need to instatiate Router and provide it with an array of paths. The path object is an object literal with a path and action value.
+To create routes you need to instatiate Router and provide it with a series of path objects separated by commas. The path object is an object literal with a path and action value.
 
 ## Adding Routes
 
@@ -31,7 +31,7 @@ import { Router } from '@composi/router'
 const router = new Router()
 
 // Define paths to use:
-router([
+router(
   {
     path: "/",
     action: () => {
@@ -52,7 +52,7 @@ router([
       else console.log(name)
     }
   }
-])
+)
 ```
 
 Normally you would use a route to handle loading a component. The easiest way to do this is to use a functional component:
@@ -86,7 +86,7 @@ function renderPage(component) {
   render(<Menu>{component}</Menu>, 'section')
 }
 
-router([
+router(
   {
     path: '/',
     action: () => renderPage(Home)
@@ -105,7 +105,7 @@ router([
       console.log('Sorry, not a proper path.')
     }
   }
-])
+)
 
 
 render(<Menu>{Home}</Menu>, 'section')
@@ -122,7 +122,7 @@ You can use more than one handler for a route. You might do this because you nee
 const removableHandler = () => {
   console.log('This handler is temporary and subject to removal.')
 }
-router([
+router(
   {
     path: '/',
     action: () => console.log('You are home!')
@@ -131,7 +131,7 @@ router([
     path: '/',
     action: () => console.log('This is another handler on the Home path.')
   }
-])
+)
 ```
 To learn more about removing paths and handlers, see [Removing a Route](#Removing-a-Route)
 
@@ -190,7 +190,7 @@ You can remove a singular route as follows:
 const removableHandler = () => {
   console.log('This handler is temporary and subject to removal.')
 }
-router([
+router(
   {
     path: '/',
     action: () => console.log('You are home!')
@@ -199,7 +199,7 @@ router([
     path: '/',
     action: () => removableHandler
   }
-])
+)
 
 // Sometime later we remove the named handler:
 router.remove('/', removableHandler)

@@ -118,7 +118,7 @@ export function Router() {
    * @param {Object<string,any>[]} path The path to register or to navigate.
    * @returns {void} undefined
    */
-  const router = path => {
+  const router = (...path) => {
     let addHandler = (path, fn) => {
       if (!map[path]) {
         map[path] = new Route(path, name)
@@ -126,16 +126,10 @@ export function Router() {
       }
       map[path].addHandler(fn)
     }
-    if (Array.isArray(path)) {
-      path.map(route => {
-        addHandler(route.path, route.action)
-      })
-      router.reload()
-    } else {
-      console.error(
-        'Composi router expects an array of objects with path and action properties.'
-      )
-    }
+    path.map(route => {
+      addHandler(route.path, route.action)
+    })
+    router.reload()
   }
 
   /**

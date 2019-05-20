@@ -4,7 +4,7 @@ import { Router } from '../src'
 test('Router should respond to location hash changes.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/",
       action: () => {
@@ -17,7 +17,7 @@ test('Router should respond to location hash changes.', () => {
         testVar = 'about'
       }
     }
-  ])
+  )
   window.location.hash = '/'
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
@@ -30,7 +30,7 @@ test('Router should respond to location hash changes.', () => {
 test('Should be able to get parameter id from path.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/users/:name",
       action: (name) => {
@@ -38,7 +38,7 @@ test('Should be able to get parameter id from path.', () => {
         else testVar = `users: ${name}`
       }
     }
-  ])
+  )
 
   window.location.hash = '/users/jane'
   window.dispatchEvent(new CustomEvent('hashchange'))
@@ -52,7 +52,7 @@ test('Should be able to get parameter id from path.', () => {
 test('Should be able to get parameter id from path or path itself when parameter is optional.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/users/:name?",
       action: (name) => {
@@ -60,7 +60,7 @@ test('Should be able to get parameter id from path or path itself when parameter
         else testVar = `No name was found.`
       }
     }
-  ])
+  )
 
   window.location.hash = '/users/joe'
   window.dispatchEvent(new CustomEvent('hashchange'))
@@ -75,7 +75,7 @@ test('router.navigate should update hash value and trigger navigation.', () => {
   window.location.hash = ''
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/",
       action: () => {
@@ -95,7 +95,7 @@ test('router.navigate should update hash value and trigger navigation.', () => {
         else testVar = `users: ${name}`
       }
     }
-  ])
+  )
   router.navigate('/')
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
@@ -117,7 +117,7 @@ test('Should be able to get id from path when using router.navigate.', () => {
   window.location.hash = ''
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/users/:name",
       action: (name) => {
@@ -125,7 +125,7 @@ test('Should be able to get id from path when using router.navigate.', () => {
         else testVar = `users: ${name}`
       }
     }
-  ])
+  )
 
   router.navigate('/users/jane')
   window.dispatchEvent(new CustomEvent('hashchange'))
@@ -140,7 +140,7 @@ test('Should be able to get id from path when using router.navigate.', () => {
 test('Should be able to get parameter id from path or path itself when parameter is optional when using router.navigate.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/users/:name?",
       action: (name) => {
@@ -148,7 +148,7 @@ test('Should be able to get parameter id from path or path itself when parameter
         else testVar = `No name was found.`
       }
     }
-  ])
+  )
 
   router.navigate('/users/joe')
   window.dispatchEvent(new CustomEvent('hashchange'))
@@ -162,7 +162,7 @@ test('Should be able to get parameter id from path or path itself when parameter
 test('Should be able remove all routes and handlers.', function() {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/",
       action: () => {
@@ -175,7 +175,7 @@ test('Should be able remove all routes and handlers.', function() {
         testVar = 'about'
       }
     }
-  ])
+  )
   window.location.hash = '/'
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
@@ -196,7 +196,7 @@ test('Should be able to remove a path.', () => {
   const fnToRemove = () => {
     testVar = 'users2'
   }
-  router([
+  router(
     {
       path: "/",
       action: () => {
@@ -209,7 +209,6 @@ test('Should be able to remove a path.', () => {
         testVar = 'about'
       }
     },
-    ,
     {
       path: "/users",
       action: () => {
@@ -221,7 +220,7 @@ test('Should be able to remove a path.', () => {
       action: fnToRemove
     }
 
-  ])
+  )
   window.location.hash = '/'
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
@@ -251,7 +250,7 @@ test('Should be able to remove a path.', () => {
 test('Should be able to use "*" as wild card for route.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/home",
       action: () => {
@@ -264,7 +263,7 @@ test('Should be able to use "*" as wild card for route.', () => {
         testVar = 'wild card route'
       }
     }
-  ])
+  )
   window.location.hash = '/home'
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
@@ -277,7 +276,7 @@ test('Should be able to use "*" as wild card for route.', () => {
 test('Should be able to block route by returning false.', () => {
   const router = new Router()
   let testVar = 0
-  router([
+  router(
     {
       path: "/",
       action: () => {
@@ -296,7 +295,7 @@ test('Should be able to block route by returning false.', () => {
         testVar = 'admin'
       }
     }
-  ])
+  )
   window.location.hash = '/'
   window.dispatchEvent(new CustomEvent('hashchange'))
   expect(testVar).toEqual('home')
