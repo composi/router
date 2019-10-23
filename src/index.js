@@ -110,12 +110,17 @@ export function Router() {
       return true
     }
   }
+  /**
+   * @typedef {Object} PathObject
+   * @prop {string} path
+   * @prop {(param?: any) => void} action
+   */
 
   /**
    * This is the main constructor for router object.
    * Creates a route or navigates it if second parameter is empty.
    *
-   * @param {Object<string,any>[]} path The path to register or to navigate.
+   * @param {PathObject[]} path The path to register or to navigate.
    * @returns {void} undefined
    */
   const router = (...path) => {
