@@ -40,7 +40,7 @@ export function Router() {
               '(?:' +
               (optional ? slash : '') +
               (format || '') +
-              (capture || ((format && '([^/.]+?)') || '([^/]+?)')) +
+              (capture || (format && '([^/.]+?)') || '([^/]+?)') +
               ')' +
               (optional || '')
             )
@@ -56,7 +56,7 @@ export function Router() {
     /**
      * Adds a handler for "this" route.
      * @param {function} fn
-     * @return {void} undefined
+     * @returns {void} undefined
      */
     addHandler(fn) {
       this.fns.push(fn)
@@ -65,7 +65,7 @@ export function Router() {
     /**
      * Removes specific handler for this route.
      * @param {function} fn
-     * @return {void} undefined
+     * @returns {void} undefined
      */
     removeHandler(fn) {
       for (let i = 0, c = this.fns.length; i < c; i++) {
@@ -81,7 +81,7 @@ export function Router() {
      * Executes this route with specified params.
      *
      * @param {Object<string, any>} params
-     * @return {boolean} boolean
+     * @returns {boolean} boolean
      */
     run(params) {
       for (let i = 0, c = this.fns.length; i < c; i++) {
@@ -94,7 +94,7 @@ export function Router() {
      * Tests a path of this route and runs if it's was successful.
      * @param {string} path
      * @param {Object<string, any>} params
-     * @return {boolean} boolean
+     * @returns {boolean} boolean
      */
     match(path, params) {
       let m = this.regex.exec(path)
@@ -144,7 +144,7 @@ export function Router() {
    *
    * @param {string} path target path to remove.
    * @param {Function} fn handler function.
-   * @return {void} undefined
+   * @returns {void} undefined
    */
   router.remove = (path, fn) => {
     let route = map[path]
@@ -159,7 +159,7 @@ export function Router() {
   /**
    * Removes all handlers and routes.
    *
-   * @return {void} undefined
+   * @returns {void} undefined
    */
   router.removeAll = () => {
     map = {}
@@ -171,7 +171,7 @@ export function Router() {
    * Navigates current route to desired one
    *
    * @param  {string} path target path to navigate
-   * @return {void} undefined
+   * @returns {void} undefined
    */
   router.navigate = path => {
     window.location.hash = path
@@ -179,7 +179,7 @@ export function Router() {
 
   /**
    * Get the location hash.
-   * @return {string} string
+   * @returns {string} string
    */
   const getHash = () => window.location.hash.substring(1)
 
